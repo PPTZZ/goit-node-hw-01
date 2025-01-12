@@ -9,18 +9,18 @@ const contactsList: Contact[] = JSON.parse(
 );
 
 export const listContacts = (): void => {
-	console.log(contactsList);
+	console.table(contactsList);
 };
 
-export const getContactById = (contactId: number): Contact => {
+export const getContactById = (contactId: number): void => {
 	const foundContact: Contact | undefined = contactsList.find(
 		contact => Number(contact.id) === contactId
 	);
 	if (!foundContact) {
-		throw new Error(`Contact with id ${contactId} not found`.red);
+		console.log('The contact %d was not found'.red,contactId);
+		
 	}
 	console.log(foundContact);
-	return foundContact;
 };
 
 export const removeContact = (contactId: number): void => {
@@ -30,9 +30,7 @@ export const removeContact = (contactId: number): void => {
 	const data = JSON.stringify(newContactList);
 	fs.writeFile(contactsPath, data, err => {
 		if (err) {
-			throw new Error(
-				`The contact with the id: ${contactId} was not found`.red
-			);
+			console.log('The contact %d was not found'.red,contactId);
 		}
 		console.log('Contact removed successfully'.green);
 	});
