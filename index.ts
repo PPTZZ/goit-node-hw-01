@@ -8,10 +8,6 @@ import { ActionParams } from './global/types';
 import { program } from 'commander';
 
 
-// ;
-// removeContact(4);
-
-
 program
 	.option('-a, --action <type>', 'choose action')
 	.option('-i, --id <type>', 'user id')
